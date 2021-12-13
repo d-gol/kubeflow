@@ -97,6 +97,20 @@ def list_notebooks(namespace):
         "notebooks"
     )
 
+# Gets the number of available GPUs
+
+
+def get_available_gpu_nodes():
+    nodes = v1_core.list_node()
+    availableGpus = 0
+    for node in nodes.items:
+        try:
+            availableGpus += int(node.status.allocatable['nvidia.com/gpu'])
+        except KeyError as e:
+            continue
+    availableGpus = True if availableGpus > 0 else False
+    return availableGpus
+
 
 # We don't do a subject access review on notebook events because
 # notebook events are cluster scoped resources. Users however are only
@@ -180,6 +194,8 @@ def create_pvc(pvc, namespace):
     )
 
 # DELETErs
+
+
 @auth.needs_authorization("delete", "kubeflow.org", "v1beta1", "notebooks")
 def delete_notebook(notebook_name, namespace):
     return wrap(

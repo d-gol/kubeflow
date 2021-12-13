@@ -1,7 +1,14 @@
 <div class="group-wrapper" [formGroup]="parentForm">
   <h3>
     <mat-icon class="gpu">memory</mat-icon>
-    GPUs
+    GPUs Available To Use:
+    <ng-template [ngIf]="availablegpus" [ngIfElse]="notAvailable">
+      <b style="color: green"> Yes </b>
+    </ng-template>
+
+    <ng-template #notAvailable>
+      <b style="color: red"> No</b>
+    </ng-template>
   </h3>
   <p>
     Specify the number and Vendor of GPUs that will be assigned to the Notebook

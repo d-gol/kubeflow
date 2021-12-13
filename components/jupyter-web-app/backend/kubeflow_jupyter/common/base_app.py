@@ -132,6 +132,7 @@ def get_config():
     data = {"success": True}
 
     data["config"] = utils.spawner_ui_config()
+    data["config"]["availablegpu"] = api.get_available_gpu_nodes()
     return jsonify(data)
 
 

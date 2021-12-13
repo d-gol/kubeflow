@@ -16,6 +16,7 @@ export function getFormDefaults(): FormGroup {
       vendor: ['', []],
       num: ['', []],
     }),
+    availablegpu: ['', [Validators.required]],
     noWorkspace: [false, []],
     workspace: fb.group({
       type: ['', [Validators.required]],

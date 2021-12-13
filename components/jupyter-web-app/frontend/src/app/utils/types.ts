@@ -18,7 +18,7 @@ export function emptyVolume(): Volume {
     path: "",
     mode: "",
     extraFields: {},
-    templatedName: ""
+    templatedName: "",
   };
 }
 
@@ -36,6 +36,10 @@ export interface GPU {
   vendor?: string;
   num?: string;
   vendors?: GPUVendor[];
+}
+
+export interface AvailableGPU {
+  avilablegpus?: boolean;
 }
 
 // Backend response type
@@ -122,7 +126,9 @@ export interface Config {
     value?: GPU;
     readOnly?: boolean;
   };
-
+  availablegpu: {
+    value: boolean;
+  };
   configurations?: {
     value: string[];
     readOnly?: boolean;
